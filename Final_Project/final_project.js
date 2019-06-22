@@ -239,6 +239,7 @@ animRotValue = 0.01;
 transX = 0.0; transY = 0.0; transZ = 0.0;
 frames = 1;
 var rotAxis = [1,0,1];
+var isTranslate = false;
 
 function animRotate(sign)   //  increase or decrease rotation speed
 {
@@ -276,11 +277,12 @@ function changeRotAxis(axis){   // change rotating direction
                 rotAxis[2]=1;
             break;
     }
-    trace = [];
+    // trace = [];
 }
 
 function trXinc(sign) // translate X increase or decrease
 {
+    isTranslate = true;
     if(sign=='+')
         transX += 0.01;
     else
@@ -297,6 +299,7 @@ function trXinc(sign) // translate X increase or decrease
 
 function trYinc(sign) // translate Y increase or decrease
 {
+    isTranslate = true;
 	if(sign=='+')
         transY += 0.01;
     else
@@ -313,6 +316,7 @@ function trYinc(sign) // translate Y increase or decrease
 
 function trZinc(sign) // translate Z increase or decrease
 {
+    isTranslate = true;
 	if(sign=='+')
         transZ += 0.01;
     else
@@ -342,6 +346,12 @@ function addTrace(mat){
             trace = trace.slice(1,traceTotalNum);
         }
         trace.push(mat);
+    } else if(isTranslate == true){
+        if(trace.length>=traceTotalNum){
+            trace = trace.slice(1,traceTotalNum);
+        }
+        trace.push(mat);
+        isTranslate = false;
     }
 }
 
@@ -527,7 +537,7 @@ gl.uniformMatrix4fv(locMmatrix, false, trace[trace.length -1].slice());
 gl.drawArrays(gl.TRIANGLES, 0, 36);
 
 // draw trace of cube
-color_a = 0.5;
+color_a = 0.3;
 for (var i = trace.length -1; i>=0;i-=traceFreq){
     color_a -= trace_alpha;
     gl.bindBuffer(gl.ARRAY_BUFFER, gl.vertexBuffer);
