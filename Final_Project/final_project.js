@@ -329,18 +329,20 @@ function trZinc(sign) // translate Z increase or decrease
 
 // About Trace(After-image)
 var trace = [];
-var traceNum = 5;
-var traceFreq = 5;
+var traceNum = 20;
+var traceFreq = 1;
 var traceTotalNum = traceNum * traceFreq;
-var trace_alpha = 0.5/traceNum;
+var trace_alpha = 0.3/traceNum;
 var traceColor = "color";
 var slider_traceNum = document.getElementById("traceNum");
 
 function addTrace(mat){
-    if(trace.length>=traceTotalNum){
-        trace = trace.slice(1,traceTotalNum);
+    if(animRotValue != 0.0 && animRotValue != -0.0){
+        if(trace.length>=traceTotalNum){
+            trace = trace.slice(1,traceTotalNum);
+        }
+        trace.push(mat);
     }
-    trace.push(mat);
 }
 
 function changeTraceNum(num){
@@ -412,7 +414,7 @@ function renderScene() {
     gl.drawArrays(gl.TRIANGLES, 0, 36);
 
     // draw trace of cube
-    color_a = 0.5;
+    color_a = 0.3;
     for (var i = trace.length -1; i>=0;i-=traceFreq){
         color_a -= trace_alpha;
         gl.bindBuffer(gl.ARRAY_BUFFER, gl.vertexBuffer);
