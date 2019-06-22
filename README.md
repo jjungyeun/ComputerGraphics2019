@@ -55,3 +55,12 @@ original 큐브 및 각 잔상들이 그려질 때마다 vertex buffer에 data�
 
 이런 방식을 이용해서 잔상을 표현해주었는데, 사용자가 직접 잔상으로 남길 큐브의 개수와 잔상을 표현할 frame의 빈도를 설정해줄 수 있다. 
 또한 잔상의 색깔을 원래 큐브 색, 흰색, 회색 중 선택할 수 있도록 하였다.
+
+<br><br>
+
+### Reference
+#### HTML Tab
+https://www.w3schools.com/howto/howto_js_tabs.asp
+
+#### After image
+https://threejs.org/examples/webgl_postprocessing_afterimage.html
