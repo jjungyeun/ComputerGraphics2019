@@ -1,0 +1,97 @@
+/figure {
+	-50 0 moveto
+	100 0 rlineto
+	-25 100 rlineto
+	-50 0 rlineto
+	closepath
+}def
+
+/myDesign {
+	0.15 0.15 scale
+	0 10 60 {60 rotate figure}for
+	gsave
+	0.965 0.7 1 setrgbcolor
+	fill
+	grestore
+	1 setgray
+	stroke
+}def
+
+
+/nameCard {
+	% draw card background
+	gsave
+	0 0 moveto
+	250 0 rlineto
+	0 180 rlineto
+	-250 0 rlineto
+	closepath
+	1 0.98 0.83 setrgbcolor
+	fill
+	grestore
+	
+	% draw myDesign
+	gsave
+	20 160 translate
+	myDesign
+	grestore
+	gsave
+	20 20 translate
+	myDesign
+	grestore
+	gsave
+	230 20 translate
+	myDesign
+	grestore
+	gsave
+	230 160 translate
+	myDesign
+	grestore
+	
+	% draw Bezeir curve
+	gsave
+	0 80 moveto
+	0 110 100 110 100 180 curveto
+	0.78 0 0.85 setrgbcolor
+	0.4 setlinewidth
+	stroke
+	0 100 moveto
+	0 120 100 110 120 180 curveto
+	0.965 0.7 1 setrgbcolor
+	stroke
+	grestore
+	
+	% write my info
+	gsave
+	/Helvetica findfont
+	18 scalefont
+	setfont
+	50 80 moveto
+	(Postscript Programmer)
+	0.67 0 0.58 setrgbcolor
+	show
+	grestore
+	gsave
+	/Helvetica findfont
+	15 scalefont
+	setfont
+	120 55 moveto
+	(Won Jung Yeun)
+	show
+	grestore
+	
+}def
+
+gsave
+40 -200 translate
+0 1 2 {
+	0 250 translate 
+	nameCard} for
+grestore
+gsave
+310 -200 translate
+0 1 2 {
+	0 250 translate 
+	nameCard} for
+grestore
+
